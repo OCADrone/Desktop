@@ -1,0 +1,4 @@
+Desktop
+=======
+
+Desktop interface (GUI)
