@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Drone>
+    <id></id>
+    <ip>server.mine42.com</ip>
+    <port>2342</port>
+    <sshpath>C:/Dropbox/Projets/EIP/mine42/despla_m_private</sshpath>
+    <username>despla_m</username>
+</Drone>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Drone>
+    <id></id>
+    <ip>127.0.0.1</ip>
+    <port>22</port>
+    <sshpath></sshpath>
+    <username>despla_m</username>
+</Drone>

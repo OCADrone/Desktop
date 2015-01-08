@@ -1,0 +1,10 @@
+<drone>
+	<name>
+	Drone
+	</name>
+	<id>3</id>
+	<ip>IP loaded</ip>
+	<port>Port loaded</port>
+	<sshpath>SSH Path loaded</sshpath>
+	<username>Username Loaded</username>
+</drone>
