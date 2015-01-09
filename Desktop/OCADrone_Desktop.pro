@@ -8,20 +8,20 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = OCADrone_Desktop
+TARGET =    OCADrone_Desktop
 
-TEMPLATE = app
+TEMPLATE =  app
 
-CONFIG += static
+CONFIG +=   static
 
-SOURCES += main.cpp \
-        mainwindow.cpp \
-    module.cpp \
-    modulehandler.cpp
+SOURCES +=  main.cpp \
+            mainwindow.cpp \
+            module.cpp \
+            modulehandler.cpp
 
 HEADERS  += mainwindow.h \
-    module.h \
-    modulehandler.h
+            module.h \
+            modulehandler.h
 
 FORMS    += mainwindow.ui
 
@@ -32,8 +32,7 @@ win32: INCLUDEPATH += include/windows
 # Linux
 
 unix: INCLUDEPATH += include/linux
-
 unix: LIBS += -ldl
 
 RESOURCES += \
-    assets.qrc
+             assets.qrc

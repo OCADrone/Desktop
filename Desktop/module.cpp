@@ -12,7 +12,7 @@ Module::Module()
     QString ini = QFileDialog::getOpenFileName();
 
     widget = NULL;
-    name = "Module sans nom";
+    name = "no name";
     module = "";
 
     QFile file(ini);

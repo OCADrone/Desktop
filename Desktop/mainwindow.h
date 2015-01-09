@@ -23,7 +23,7 @@ public:
     Ui::MainWindow *getUi() const;
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *ui; /** UI object (form). **/
     QList<Module *> moduleList; /** Module list. **/
 
 public slots:

@@ -12,21 +12,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-//    connect(ui->actionCharger_module, SIGNAL(triggered()), this, SLOT(createNewModule()));
-//    ui->actionCharger_module->triggered();
-
     ui->tabWidget->setTabsClosable(true);
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(slotCloseTab(int)));
+    QDir myPath("modules");
+    qDebug() << myPath.absolutePath();
+    QFileInfoList fileList = myPath.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
 
-    QDir test("modules");
-    qDebug() << test.absolutePath();
-//    QStringList filters;
-//    filters << ".ini";
-//    test.setNameFilters(filters);
-    QFileInfoList fileList = test.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-    QFileInfoList::Iterator it;
-    for (QFileInfoList::Iterator it = fileList.begin(); it != fileList.end(); it++) {
+    for (QFileInfoList::Iterator it = fileList.begin(); it != fileList.end(); it++)
+    {
         QDir currentDir((*it).absoluteFilePath());
         currentDir.setNameFilters(QStringList("*.ini"));
         qDebug() << currentDir.absolutePath() << currentDir.count();
@@ -50,12 +43,13 @@ void MainWindow::createNewModule()
     moduleList.push_back(newmodule);
     int ret = ui->tabWidget->addTab(newmodule->getWidget(), newmodule->getName());
     if (ret >= 0)
+    {
         ui->tabWidget->setCurrentIndex(ret);
+    }
     else
+    {
         qDebug() << "!Load Failed";
-//    QMenu *newmenu = ui->menuMOdules->addMenu(newmodule->getName());
-//    newmenu->addAction(newmodule->getDeleteAction());
-//    connect(newmodule, SIGNAL(moduleDeleted()), this, SLOT(deleteModule()));
+    }
 }
 
 void MainWindow::deleteModule()
@@ -68,12 +62,13 @@ void MainWindow::deleteModule()
         if (QObject::sender() == (*it))
         {
             qDebug() << "Module in list !";
-            //delete QObject::sender();
         }
     }
     qDebug() << ui->tabWidget->count();
     for (int i = 0; i != ui->tabWidget->count(); i++)
+    {
         qDebug() << i << "/" << ui->tabWidget->count();
+    }
 }
 
 Ui::MainWindow *MainWindow::getUi() const
