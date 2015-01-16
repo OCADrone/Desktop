@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QDebug>
 
-#include "module_name.h"
+#include "mymodule.h"
 
 #include "ui_Form.h"
 

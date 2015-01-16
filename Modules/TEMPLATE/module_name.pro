@@ -11,12 +11,10 @@ DEFINES     += \
 
 HEADERS     += \
             widget.h \
-            localsocketipcclient.h \
             mymodule.h
 
 SOURCES     += \
             widget.cpp \
-            localsocketipcclient.cpp \
             mymodule.cpp
 
 FORMS       += \
