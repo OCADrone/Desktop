@@ -94,3 +94,11 @@ void MainWindow::MessageToModule(QString message)
 {
 
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    QMessageBox msgBox;
+    msgBox.setText("Le logiciel est déjà à jour.");
+
+    msgBox.exec();
+}

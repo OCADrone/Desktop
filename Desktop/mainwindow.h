@@ -32,6 +32,8 @@ public slots:
     void deleteModule(); /** Destroy Module Object in list. **/
     void slotCloseTab(int index); /** Close Tab **/
     void MessageToModule(QString);
+private slots:
+    void on_pushButton_clicked();
 };
 
 #endif // MAINWINDOW_H
