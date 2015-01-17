@@ -13,7 +13,16 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tabWidget->setTabsClosable(true);
+
+    server = new LocalSocketIpcServer("Desktop", parent);
+
+    // QT connect
+
+    connect(server, SIGNAL(messageReceived(QString)), this, SLOT(MessageToModule(QString)));
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(slotCloseTab(int)));
+
+    // interface
+
     QDir myPath("modules");
     qDebug() << myPath.absolutePath();
     QFileInfoList fileList = myPath.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
@@ -79,4 +88,9 @@ Ui::MainWindow *MainWindow::getUi() const
 void MainWindow::slotCloseTab(int index)
 {
     ui->tabWidget->removeTab(index);
+}
+
+void MainWindow::MessageToModule(QString message)
+{
+
 }

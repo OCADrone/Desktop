@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,11 +17,13 @@ CONFIG +=   static
 SOURCES +=  main.cpp \
             mainwindow.cpp \
             module.cpp \
-            modulehandler.cpp
+            modulehandler.cpp \
+    localsocketipcserver.cpp
 
 HEADERS  += mainwindow.h \
             module.h \
-            modulehandler.h
+            modulehandler.h \
+    localsocketipcserver.h
 
 FORMS    += mainwindow.ui
 
@@ -32,7 +34,7 @@ win32: INCLUDEPATH += include/windows
 # Linux
 
 unix: INCLUDEPATH += include/linux
-unix: LIBS += -ldl
+unix: LIBS        += -ldl
 
 RESOURCES += \
              assets.qrc

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <qtreewidget.h>
 
+#include <localsocketipcserver.h>
 #include "module.h"
 
 namespace Ui {
@@ -25,11 +26,12 @@ public:
 private:
     Ui::MainWindow *ui; /** UI object (form). **/
     QList<Module *> moduleList; /** Module list. **/
-
+    LocalSocketIpcServer *server;
 public slots:
     void createNewModule(); /** Create a Module Object (added to the list). **/
     void deleteModule(); /** Destroy Module Object in list. **/
     void slotCloseTab(int index); /** Close Tab **/
+    void MessageToModule(QString);
 };
 
 #endif // MAINWINDOW_H
