@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/new/myResource">
+        <file>img/red.png</file>
+        <file>img/green.png</file>
+        <file>img/refresh.png</file>
+    </qresource>
+</RCC>
