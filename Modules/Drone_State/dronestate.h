@@ -16,9 +16,9 @@
 #include <iostream> // à enlever plus tard, ca me sert pour le debug
 
 #include "ui_Drone_State.h"
-#include "connexionmanager.h"
-#include "configmanager.h"
-#include "localsocketipcclient.h"
+#include "ssh_interaction/connexionmanager.h"
+#include "xml_interaction/configmanager.h"
+#include "module_interaction/localsocketipcclient.h"
 
 #define DEFAULTSERVER "server.mine42.com"
 #define DEFAULTPORT "2342"
