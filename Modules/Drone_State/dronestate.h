@@ -60,13 +60,6 @@ private slots:
     void            on_GetInformationsButton_clicked();
 
 private:
-    typedef struct s_info
-    {
-        int                                         id;
-        QString                                     name;
-        std::list<QString>                          data;
-    }t_info;
-
     Ui::Drone_State                                *ui;
     QString                                        sshpath;
     std::list<ConnectionManager::t_info*>          dronelist;
@@ -78,7 +71,7 @@ private:
     QDir                                           currentdir;
     ConnectionManager                              *manage;
     LocalSocketIpcClient                           *client;
-    std::list<t_info*>                             module;
+    std::list<LocalSocketIpcClient::t_info*>       *module;
 };
 
 #endif // DRONESTATE_H

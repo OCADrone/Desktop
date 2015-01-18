@@ -90,7 +90,7 @@ void MainWindow::slotCloseTab(int index)
     ui->tabWidget->removeTab(index);
 }
 
-void MainWindow::MessageToModule(QString message)
+void MainWindow::MessageToModule(std::list<LocalSocketIpcServer::t_info*> *message)
 {
 
 }
@@ -105,5 +105,5 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_actionActualiser_les_donn_es_triggered()
 {
-    qDebug() << "Bonjour";
+
 }

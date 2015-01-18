@@ -7,6 +7,12 @@ class LocalSocketIpcServer : public QObject
 {
     Q_OBJECT
 public:
+    typedef struct s_info
+    {
+        int                                         id;
+        QString                                     name;
+        std::list<QString>                          data;
+    }t_info;
     LocalSocketIpcServer(QString servername, QObject *parent);
     ~LocalSocketIpcServer();
 

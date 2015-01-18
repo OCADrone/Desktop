@@ -74,7 +74,7 @@ void DroneState::setModuleList()
             qDebug() << "File open error:" << file.errorString();
             return;
         }
-        t_info *myModule = new t_info;
+        LocalSocketIpcClient::t_info *myModule = new LocalSocketIpcClient::t_info;
 
         myModule->id = i;
         QXmlStreamReader inputStream(&file);
@@ -98,10 +98,12 @@ void DroneState::setModuleList()
                 }
             }
         }
-        module.push_back(myModule);
+        module->push_back(myModule);
         i++;
         file.close();
     }
+   // client->send_MessageToServer(module);
+    client->send_MessageToServer("Hello world");
 }
 
 void DroneState::buttonStartPressed()

@@ -1,7 +1,8 @@
 #include "localsocketipcserver.h"
 
 LocalSocketIpcServer::LocalSocketIpcServer(QString servername, QObject *parent)
-    :QObject(parent) {
+    :QObject(parent)
+{
     m_server = new QLocalServer(this);
     if (!m_server->listen(servername)) {
         qDebug() << "Not able to start the Server";
@@ -10,12 +11,13 @@ LocalSocketIpcServer::LocalSocketIpcServer(QString servername, QObject *parent)
     connect(m_server, SIGNAL(newConnection()), this, SLOT(socket_new_connection()));
 }
 
-LocalSocketIpcServer::~LocalSocketIpcServer() {
+LocalSocketIpcServer::~LocalSocketIpcServer()
+{
 
 }
 
-void LocalSocketIpcServer::socket_new_connection() {
-
+void LocalSocketIpcServer::socket_new_connection()
+{
     QLocalSocket *clientConnection = m_server->nextPendingConnection();
 
     while (clientConnection->bytesAvailable() < (int)sizeof(quint32))
@@ -32,6 +34,8 @@ void LocalSocketIpcServer::socket_new_connection() {
     }
     QString message;
     in >> message;
+
+    qDebug() << message;
 
     emit messageReceived(message);
 }
