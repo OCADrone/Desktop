@@ -160,6 +160,7 @@
      <string>Modules</string>
     </property>
     <addaction name="actionChargerModule"/>
+    <addaction name="actionActualiser_les_donn_es"/>
    </widget>
    <widget class="QMenu" name="menu">
     <property name="title">
@@ -197,6 +198,17 @@
   <action name="actionChargerModule">
    <property name="text">
     <string>Charger module externe</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionActualiser_les_donn_es">
+   <property name="text">
+    <string>Actualiser les données</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>

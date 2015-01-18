@@ -102,3 +102,8 @@ void MainWindow::on_pushButton_clicked()
 
     msgBox.exec();
 }
+
+void MainWindow::on_actionActualiser_les_donn_es_triggered()
+{
+    qDebug() << "Bonjour";
+}

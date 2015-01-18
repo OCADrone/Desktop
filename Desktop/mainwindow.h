@@ -34,6 +34,7 @@ public slots:
     void MessageToModule(QString);
 private slots:
     void on_pushButton_clicked();
+    void on_actionActualiser_les_donn_es_triggered();
 };
 
 #endif // MAINWINDOW_H
