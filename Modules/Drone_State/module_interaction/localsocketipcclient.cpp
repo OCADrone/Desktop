@@ -1,7 +1,8 @@
 #include "localsocketipcclient.h"
 
 LocalSocketIpcClient::LocalSocketIpcClient(QString remoteServername, QObject *parent) :
-        QObject(parent) {
+        QObject(parent)
+{
 
     m_socket = new QLocalSocket(this);
     m_serverName = remoteServername;
@@ -14,20 +15,23 @@ LocalSocketIpcClient::LocalSocketIpcClient(QString remoteServername, QObject *pa
             this, SLOT(socket_error(QLocalSocket::LocalSocketError)));
 }
 
-LocalSocketIpcClient::~LocalSocketIpcClient() {
+LocalSocketIpcClient::~LocalSocketIpcClient()
+{
     m_socket->abort();
     delete m_socket;
     m_socket = NULL;
 }
 
-void LocalSocketIpcClient::send_MessageToServer(QString message) {
+void LocalSocketIpcClient::send_MessageToServer(QString message)
+{
     m_socket->abort();
     m_message = message;
     m_socket->connectToServer(m_serverName);
 }
 
 
-void LocalSocketIpcClient::socket_connected(){
+void LocalSocketIpcClient::socket_connected()
+{
     QByteArray block;
     QDataStream out(&block, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_0);
@@ -37,15 +41,18 @@ void LocalSocketIpcClient::socket_connected(){
     m_socket->flush();
 }
 
-void LocalSocketIpcClient::socket_disconnected() {
+void LocalSocketIpcClient::socket_disconnected()
+{
     qDebug() << "socket_disconnected";
 }
 
 
-void LocalSocketIpcClient::socket_readReady() {
+void LocalSocketIpcClient::socket_readReady()
+{
     qDebug() << "socket_readReady";
 }
 
-void LocalSocketIpcClient::socket_error(QLocalSocket::LocalSocketError) {
+void LocalSocketIpcClient::socket_error(QLocalSocket::LocalSocketError)
+{
     qDebug() << "socket_error";
 }

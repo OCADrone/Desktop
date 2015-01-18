@@ -10,10 +10,6 @@ DroneState::DroneState(QWidget *parent) :
     ui = new Ui::Drone_State;
     ui->setupUi(this);
 
-    InfoIsGet = new t_InfoIsGet;
-
-    InfoIsGet->hardware = 0;
-
     /* Developer mode default disabled */
 
     ui->command_label->setVisible(false);
@@ -30,17 +26,6 @@ DroneState::DroneState(QWidget *parent) :
     ui->Port_textfield->setText(DEFAULTPORT);
     ui->Username_textfield->setText(DEFAULTUSER);
     ui->Password_textfield->setText(DEFAULTPASSWD);
-
-    /* disabled get info before connexion */
-
-    ui->Info_checkbox->setDisabled(true);
-    ui->Hardware_checkBox->setDisabled(true);
-
-    ui->Mission_checkBox->setDisabled(true);
-    ui->Photos_checkBox->setDisabled(true);
-
-    ui->getInfo_progressBar->setDisabled(true);
-    ui->GetInformationsButton->setDisabled(true);
 
     /* Set default directory */
 
@@ -65,6 +50,58 @@ DroneState::DroneState(QWidget *parent) :
     /* Client */
 
     client = new LocalSocketIpcClient("Desktop", parent);
+    setModuleList();
+}
+
+void DroneState::setModuleList()
+{
+    /* Set Module list*/
+
+    int i;
+    currentdir.setCurrent(defaultdir);
+    QStringList filter("*.xml");
+    QDir myDir("xml");
+    QStringList filesList = myDir.entryList(QStringList(filter), QDir::Files);
+    currentdir.setCurrent(currentdir.currentPath() + "/xml");
+    QStringList::iterator it;
+
+    i = 0;
+    for (it = filesList.begin(); it != filesList.end();++it)
+    {
+        QFile file(*it);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            qDebug() << "File open error:" << file.errorString();
+            return;
+        }
+        t_info *myModule = new t_info;
+
+        myModule->id = i;
+        QXmlStreamReader inputStream(&file);
+        while (!inputStream.atEnd() && !inputStream.hasError())
+        {
+            inputStream.readNext();
+            if (inputStream.isStartElement())
+            {
+                QString name = inputStream.name().toString();
+                if(name == "name")
+                {
+                    QLabel *label = new QLabel(inputStream.readElementText());
+                    QVBoxLayout *box = new QVBoxLayout;
+                    box->addWidget(label);
+                    ui->Informations->addLayout(box);
+                    myModule->name = name;
+                }
+                else if(name == "data")
+                {
+                    myModule->data.push_back(inputStream.readElementText());
+                }
+            }
+        }
+        module.push_back(myModule);
+        i++;
+        file.close();
+    }
 }
 
 void DroneState::buttonStartPressed()
@@ -88,14 +125,6 @@ void DroneState::buttonConnectPressed()
     sendLog(tr("Initialisation connexion <b>[OK]</b>."));
 
     sendLog(tr("Vous avez désormais accès à la récuperation des informations !"));
-
-
-
-    ui->Info_checkbox->setDisabled(false);
-    ui->Hardware_checkBox->setDisabled(false);
-
-    ui->Mission_checkBox->setDisabled(false);
-    ui->Photos_checkBox->setDisabled(false);
 
     ui->getInfo_progressBar->setDisabled(false);
     ui->GetInformationsButton->setDisabled(false);
@@ -140,7 +169,7 @@ void DroneState::on_DroneChoice_comboBox_currentIndexChanged(const QString &arg1
 
     sendLog(tr("Chargement des informations du fichier ..."));
 
-    currentdir.setCurrent(defaultdir + "/config");
+    // currentdir.setCurrent(defaultdir + "/config");
 
     configFile *load = configmanager->getFile(arg1);
 
@@ -189,7 +218,7 @@ void DroneState::on_SaveConfiguration_pushButton_clicked()
 
     /* creating file */
 
-    currentdir.setCurrent(defaultdir + "/config");
+    // currentdir.setCurrent(defaultdir + "/config");
 
     save->createFile(ui->save_textfield->text());
 

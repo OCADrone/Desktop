@@ -35,6 +35,7 @@ class DroneState : public QWidget
 public:
     explicit        DroneState(QWidget *parent = 0);
     void            sendLog(const QString text); /** display text in log area **/
+    void            setModuleList();
 
 signals:
 
@@ -59,10 +60,12 @@ private slots:
     void            on_GetInformationsButton_clicked();
 
 private:
-    typedef struct s_InfoIsGet
+    typedef struct s_info
     {
-        int hardware;
-    }t_InfoIsGet;
+        int                                         id;
+        QString                                     name;
+        std::list<QString>                          data;
+    }t_info;
 
     Ui::Drone_State                                *ui;
     QString                                        sshpath;
@@ -74,8 +77,8 @@ private:
     QStringList                                    choicexml;
     QDir                                           currentdir;
     ConnectionManager                              *manage;
-    t_InfoIsGet                                    *InfoIsGet;
     LocalSocketIpcClient                           *client;
+    std::list<t_info*>                             module;
 };
 
 #endif // DRONESTATE_H
