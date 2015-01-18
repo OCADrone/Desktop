@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->infofromfile->setText("Informations récupérées depuis <b>flight.ocadrone</b>");
     myXML = new XMLmanager;
     modulename = tr("module sans nom");
     QStringList listModel;
@@ -56,6 +57,8 @@ void MainWindow::init()
     listModel->setStringList(*stringList);
     ui->listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
     ui->listView->setModel(listModel);
+
+    ui->nbtotal->setText(QString::number(stringList->length()));
 }
 
 MainWindow::~MainWindow()
@@ -85,12 +88,6 @@ void MainWindow::on_actionSauvegarder_triggered()
     myXML->saveFile(modulename);
 }
 
-void MainWindow::on_refresh_clicked()
-{
-    ui->XMLvisualizer->clear();
-    ui->XMLvisualizer->insertPlainText(myXML->getFinal());
-}
-
 void MainWindow::on_modulename_field_textChanged()
 {
     if (ui->modulename_field->text().length() <= 3)
@@ -115,4 +112,6 @@ void MainWindow::on_addInformations_clicked()
         list.append(index.data(Qt::DisplayRole ).toString());
     }
     myXML->update(modulename, list);
+    ui->XMLvisualizer->clear();
+    ui->XMLvisualizer->insertPlainText(myXML->getFinal());
 }

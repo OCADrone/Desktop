@@ -11,6 +11,7 @@
 
 #include "xmlmanager.h"
 
+
 namespace Ui {
 class MainWindow;
 }
@@ -28,7 +29,6 @@ public:
 private slots:
 
     void                    on_actionSauvegarder_triggered();
-    void                    on_refresh_clicked();
     void                    on_modulename_field_textChanged();
     void                    on_addInformations_clicked();
 
