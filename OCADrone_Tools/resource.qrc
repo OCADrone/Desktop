@@ -3,5 +3,6 @@
         <file>img/OCADroneDesktop.png</file>
         <file>img/XMLCreator.png</file>
         <file>img/website.png</file>
+        <file>img/createmodule.png</file>
     </qresource>
 </RCC>
