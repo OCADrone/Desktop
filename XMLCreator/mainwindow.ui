@@ -242,8 +242,9 @@
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
-     <string>À propos</string>
+     <string>?</string>
     </property>
+    <addaction name="action_propos"/>
    </widget>
    <widget class="QMenu" name="menuEdition">
     <property name="title">
@@ -324,6 +325,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_propos">
+   <property name="text">
+    <string>À propos</string>
    </property>
   </action>
  </widget>

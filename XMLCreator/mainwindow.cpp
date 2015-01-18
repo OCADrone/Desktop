@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("XMLCreator");
     ui->infofromfile->setText("Informations récupérées depuis <b>flight.ocadrone</b>");
     myXML = new XMLmanager;
     modulename = tr("module sans nom");
@@ -92,11 +93,11 @@ void MainWindow::on_modulename_field_textChanged()
 {
     if (ui->modulename_field->text().length() <= 3)
     {
-        ui->messagefield->setText("<b>Veuiller Saisir au moins 3 caractères pour le nom de votre module !</b>");
+        ui->messagefield->setText(tr("<b>Veuiller Saisir au moins 3 caractères pour le nom de votre module !</b>"));
     }
     else
     {
-        ui->messagefield->setText("<b><font color='green'>Joli nom pour un module !</font></b>");
+        ui->messagefield->setText(tr("<b><font color='green'>Joli nom pour un module !</font></b>"));
         modulename = ui->modulename_field->text();
     }
 }

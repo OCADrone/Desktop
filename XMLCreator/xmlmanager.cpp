@@ -26,20 +26,21 @@ void XMLmanager::saveFile(QString xmlpath)
 void XMLmanager::update(QString name, QStringList element)
 {
     final = "";
-    final += "<drone Module>\n";
-    final += "<name>";
+    final += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    final += "<dronemodule>\n";
+    final += "   <name>";
     final += name;
     final += "</name>\n";
 
     QStringList::iterator it;
     for (it = element.begin(); it != element.end();++it)
     {
-        final += "<data>";
+        final += "   <data>";
         final += (*it);
         final += "</data>\n";
     }
 
-    final += "</drone module>";
+    final += "</dronemodule>";
 }
 
 QString XMLmanager::getFinal() const
