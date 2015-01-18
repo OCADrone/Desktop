@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>img/OCADroneDesktop.png</file>
+        <file>img/XMLCreator.png</file>
+        <file>img/website.png</file>
+    </qresource>
+</RCC>
