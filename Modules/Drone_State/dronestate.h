@@ -62,7 +62,6 @@ private slots:
 private:
     Ui::Drone_State                                *ui;
     QString                                        sshpath;
-    std::list<ConnectionManager::t_info*>          dronelist;
     QString                                        key;
     configManager                                  *configmanager;
     QString                                        log;
@@ -71,7 +70,7 @@ private:
     QDir                                           currentdir;
     ConnectionManager                              *manage;
     LocalSocketIpcClient                           *client;
-    std::list<LocalSocketIpcClient::t_info*>       *module;
+    std::list<QString>                             *module;
 };
 
 #endif // DRONESTATE_H

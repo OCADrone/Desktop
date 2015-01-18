@@ -6,12 +6,6 @@ class LocalSocketIpcClient : public QObject
 {
     Q_OBJECT
 public:
-    typedef struct s_info
-    {
-        int                                         id;
-        QString                                     name;
-        std::list<QString>                          data;
-    }t_info;
     LocalSocketIpcClient(QString remoteServername, QObject *parent = 0);
     ~LocalSocketIpcClient();
 signals:

@@ -1,10 +1,10 @@
 #include "localsocketipcserver.h"
 
 LocalSocketIpcServer::LocalSocketIpcServer(QString servername, QObject *parent)
-    :QObject(parent)
-{
+    :QObject(parent) {
     m_server = new QLocalServer(this);
-    if (!m_server->listen(servername)) {
+    if (!m_server->listen(servername))
+    {
         qDebug() << "Not able to start the Server";
     }
 
@@ -34,8 +34,6 @@ void LocalSocketIpcServer::socket_new_connection()
     }
     QString message;
     in >> message;
-
-    qDebug() << message;
 
     emit messageReceived(message);
 }

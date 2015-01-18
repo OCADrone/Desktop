@@ -90,9 +90,9 @@ void MainWindow::slotCloseTab(int index)
     ui->tabWidget->removeTab(index);
 }
 
-void MainWindow::MessageToModule(std::list<LocalSocketIpcServer::t_info*> *message)
+void MainWindow::MessageToModule(QString message)
 {
-
+    qDebug() << "Desktop receive: " << message;
 }
 
 void MainWindow::on_pushButton_clicked()

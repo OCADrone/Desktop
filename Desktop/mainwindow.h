@@ -31,7 +31,7 @@ public slots:
     void createNewModule(); /** Create a Module Object (added to the list). **/
     void deleteModule(); /** Destroy Module Object in list. **/
     void slotCloseTab(int index); /** Close Tab **/
-    void MessageToModule(std::list<LocalSocketIpcServer::t_info*> *);
+    void MessageToModule(QString);
 private slots:
     void on_pushButton_clicked();
     void on_actionActualiser_les_donn_es_triggered();

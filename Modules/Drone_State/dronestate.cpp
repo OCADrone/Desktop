@@ -50,6 +50,7 @@ DroneState::DroneState(QWidget *parent) :
     /* Client */
 
     client = new LocalSocketIpcClient("Desktop", parent);
+    module = new std::list<QString>;
     setModuleList();
 }
 
@@ -62,7 +63,9 @@ void DroneState::setModuleList()
     QStringList filter("*.xml");
     QDir myDir("xml");
     QStringList filesList = myDir.entryList(QStringList(filter), QDir::Files);
+    qDebug()<< "CURRENT1:" + QDir::currentPath();
     currentdir.setCurrent(currentdir.currentPath() + "/xml");
+    qDebug()<< "CURRENT2:" + QDir::currentPath();
     QStringList::iterator it;
 
     i = 0;
@@ -74,9 +77,9 @@ void DroneState::setModuleList()
             qDebug() << "File open error:" << file.errorString();
             return;
         }
-        LocalSocketIpcClient::t_info *myModule = new LocalSocketIpcClient::t_info;
+        QString myModule = "";
 
-        myModule->id = i;
+        myModule += QString::number(i) + ":";
         QXmlStreamReader inputStream(&file);
         while (!inputStream.atEnd() && !inputStream.hasError())
         {
@@ -90,20 +93,24 @@ void DroneState::setModuleList()
                     QVBoxLayout *box = new QVBoxLayout;
                     box->addWidget(label);
                     ui->Informations->addLayout(box);
-                    myModule->name = name;
+                    myModule += label->text() + ":";
+                    qDebug() << "0" << myModule;
                 }
                 else if(name == "data")
                 {
-                    myModule->data.push_back(inputStream.readElementText());
+                    QString data = inputStream.readElementText();
+                    qDebug() << "1" << myModule;
+                    myModule +=  data + ":";
+                    qDebug() << "2" << myModule;
                 }
             }
         }
         module->push_back(myModule);
         i++;
         file.close();
+        client->send_MessageToServer(myModule);
     }
-   // client->send_MessageToServer(module);
-    client->send_MessageToServer("Hello world");
+    //client->send_MessageToServer("Hello world");
 }
 
 void DroneState::buttonStartPressed()
