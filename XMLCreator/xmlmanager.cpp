@@ -11,7 +11,7 @@ XMLmanager::~XMLmanager()
 
 void XMLmanager::saveFile(QString xmlpath)
 {
-    xmlFile = new QFile(xmlpath + ".xml");
+    xmlFile = new QFile(xmlpath);
     if (!xmlFile->open(QIODevice::WriteOnly | QIODevice::Truncate))
     {
         qDebug() << "Error on XML";

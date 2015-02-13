@@ -90,7 +90,7 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Version du logiciel : 1.0</string>
+           <string>Version du logiciel : 1.2.0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>

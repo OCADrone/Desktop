@@ -31,9 +31,9 @@ void configManager::actualizeFileName(QString currentpath)
 
     dir.setCurrent(currentpath);
 
-    if(!dir.exists("config"))
-        dir.mkdir("config");
-    dir.setCurrent(currentpath + "./config");
+    if(!dir.exists("drone"))
+        dir.mkdir("drone");
+    dir.setCurrent(currentpath + "./drone");
 
     qDebug() << "PATH: " + dir.currentPath();
 

@@ -3,6 +3,8 @@
 DroneState::DroneState(QWidget *parent) :
     QWidget(parent)
 {   
+    qDebug()<< "CURRENT PATH1:" + QDir::currentPath();
+
     /* Enable or disable default button */
 
     configmanager = new configManager(this);
@@ -29,8 +31,7 @@ DroneState::DroneState(QWidget *parent) :
 
     /* Set default directory */
 
-    currentdir.setCurrent(currentdir.currentPath() +
-                          "/../../OCADrone_Desktop");
+    currentdir.setCurrent(currentdir.currentPath());
     defaultdir = currentdir.currentPath();
 
     /* Dropdown Choice xml file list */
@@ -63,9 +64,7 @@ void DroneState::setModuleList()
     QStringList filter("*.xml");
     QDir myDir("xml");
     QStringList filesList = myDir.entryList(QStringList(filter), QDir::Files);
-    qDebug()<< "CURRENT1:" + QDir::currentPath();
     currentdir.setCurrent(currentdir.currentPath() + "/xml");
-    qDebug()<< "CURRENT2:" + QDir::currentPath();
     QStringList::iterator it;
 
     i = 0;
@@ -178,7 +177,7 @@ void DroneState::on_DroneChoice_comboBox_currentIndexChanged(const QString &arg1
 
     sendLog(tr("Chargement des informations du fichier ..."));
 
-    // currentdir.setCurrent(defaultdir + "/config");
+    currentdir.setCurrent(defaultdir + "/drone");
 
     configFile *load = configmanager->getFile(arg1);
 
@@ -227,7 +226,7 @@ void DroneState::on_SaveConfiguration_pushButton_clicked()
 
     /* creating file */
 
-    // currentdir.setCurrent(defaultdir + "/config");
+    currentdir.setCurrent(defaultdir + "/drone");
 
     save->createFile(ui->save_textfield->text());
 

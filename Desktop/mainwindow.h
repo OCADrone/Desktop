@@ -2,9 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QUrl>
+#include <QUrlQuery>
+#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
 #include <qtreewidget.h>
 
-#include <localsocketipcserver.h>
+#include "localsocketipcserver.h"
 #include "module.h"
 
 namespace Ui {

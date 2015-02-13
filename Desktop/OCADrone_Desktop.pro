@@ -12,7 +12,7 @@ TARGET =    OCADrone_Desktop
 
 TEMPLATE =  app
 
-CONFIG +=   static
+# CONFIG +=   static
 
 SOURCES +=  main.cpp \
             mainwindow.cpp \

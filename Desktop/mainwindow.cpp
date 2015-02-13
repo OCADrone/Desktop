@@ -1,11 +1,10 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDebug>
+#include <sstream>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
-#define MODULES_PATH "debug/modules"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -97,8 +96,23 @@ void MainWindow::MessageToModule(QString message)
 
 void MainWindow::on_pushButton_clicked()
 {
+    QString address("http://server.mine42.com/version.html");
     QMessageBox msgBox;
-    msgBox.setText("Le logiciel est déjà à jour.");
+    QUrl url = address;
+    QNetworkAccessManager manager;
+    QNetworkRequest request(url);
+    QNetworkReply *reply(manager.get(request));
+    QEventLoop loop;
+
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    loop.exec();
+    QString stringData(reply->readAll());
+
+    if (ui->label->text().compare("Version du logiciel : " + stringData) == -1)
+        msgBox.setText("Le logiciel est à jour.");
+    else
+        msgBox.setText("Le logiciel n'est pas à jour.\n"
+                       "RDV sur wwww.ocadrone.com");
 
     msgBox.exec();
 }

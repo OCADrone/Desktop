@@ -7,7 +7,7 @@ Module::Module()
 {
     QDir dir;
 
-    dir.setCurrent(dir.currentPath() + "/../modules/config");
+    dir.setCurrent(dir.currentPath() + "/config");
 
     QString ini = QFileDialog::getOpenFileName();
 
@@ -24,7 +24,7 @@ Module::Module()
         module = QFileInfo(file).dir().absolutePath() + "/" + settings->value("library").toString();
 
     file.close();
-
+    dir.setCurrent(dir.currentPath() + "/..");
     loadLibrary();
 }
 
@@ -53,18 +53,22 @@ void Module::loadLibrary()
         qDebug() << "Could not show widget from the loaded library";
 }
 
-void Module::deleteModule() {
+void Module::deleteModule()
+{
     emit moduleDeleted();
 }
 
-QAction *Module::getDeleteAction() {
+QAction *Module::getDeleteAction()
+{
     return actionDeleteModule;
 }
 
-QString Module::getName() const {
+QString Module::getName() const
+{
     return name;
 }
 
-QWidget *Module::getWidget() const {
+QWidget *Module::getWidget() const
+{
     return widget;
 }

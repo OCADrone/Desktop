@@ -23,7 +23,7 @@ void MainWindow::on_ocadronedeskrop_clicked()
 
 void MainWindow::on_createmodule_clicked()
 {
-    QString program = "Create_Module.exe";
+    QString program = "PluginsCreator.exe";
     QProcess *myProcess = new QProcess(this);
     myProcess->start(program, 0);
 }

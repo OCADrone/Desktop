@@ -86,7 +86,7 @@ void MainWindow::on_actionSauvegarder_triggered()
 
     // create / update XML File
 
-    myXML->saveFile(modulename);
+    myXML->saveFile(fileName);
 }
 
 void MainWindow::on_modulename_field_textChanged()
